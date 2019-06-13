@@ -1,5 +1,15 @@
 # SUNZIP
 
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
+---
+![PyPI](https://img.shields.io/pypi/pyversions/sunzip.svg)
+![Wheel](https://img.shields.io/pypi/wheel/sunzip.svg)
+![Downloads](https://img.shields.io/pypi/dm/sunzip.svg)
+![version](https://img.shields.io/pypi/v/sunzip.svg)
+[![travis-ci](https://travis-ci.org/twbgc/sunzip.svg?branch=master)](https://travis-ci.org/twbgc/sunzip)
+[![codecov](https://codecov.io/gh/twbgc/sunzip/branch/master/graph/badge.svg)](https://codecov.io/gh/twbgc/sunzip)
+
 ## Introduction
 
 ### Why are we doing this?
@@ -111,7 +121,7 @@ $ pip3 install sunzip
 ```python=
 import sunzip
 
-f = sunzip("archive.zip")
+f = sunzip.sunzip("archive.zip")
 ```
 
 
@@ -121,15 +131,15 @@ f = sunzip("archive.zip")
 ```python=
 f.threshold = 50
 ```
-*Maximum CPU time*
+*Maximum CPU time (second)*
 ```python=
 f.cpu = 1
 ```
-*Maximum memory usage*
+*Maximum memory usage (byte)*
 ```python=
 f.memory = 1024
 ```
-*Maximum file size*
+*Maximum file size (byte)*
 ```python=
 f.filesize = 1024
 ```
@@ -141,7 +151,7 @@ If there is no setting, the default value will be used.
 ```python=
 import sunzip
 
-f = sunzip("archive.zip")
+f = sunzip.sunzip("archive.zip")
 
 f.extract()
 ```

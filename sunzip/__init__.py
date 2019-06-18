@@ -66,7 +66,10 @@ class sunzip():
 
     def get_compression_ratio(self):
         # Return compression ratio of the zip file.
-        return self.get_uncompressed_size()/self.get_compressed_size()
+        try:
+            return self.get_uncompressed_size() / self.get_compressed_size()
+        except ZeroDivisionError:
+            return 0
 
     @property
     def threshold(self):

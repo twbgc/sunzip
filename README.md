@@ -16,36 +16,7 @@
 
 According to [Cara Marie](https://youtu.be/IXkX2ojrKZQ?t=331), an archive bomb a.k.a. A zip bomb is often employed to disable antivirus software, in order to create an opening for more traditional viruses. In addition, various kinds of pitfalls may occur during decompression.
 
-### Decompression pitfalls
-
-> The extraction in zipfile module might fail against some pitfalls listed below.
-
-**From file itself**
- 
-Decompression may fail due to incorrect password / CRC checksum / ZIP format or
-unsupported compression method / decryption.
-
-**File System limitations**
- 
-Exceeding limitations on different file systems can cause decompression failed.
-Such as allowable characters in the directory entries, length of the file name,
-length of the pathname, size of a single file, and number of files, etc.
-
-**Resources limitations**
- 
-The lack of memory or disk volume would lead to decompression failed. 
-For example, decompression bombs (aka `ZIP Bomb`) apply to zipfile library 
-that can cause disk volume exhaustion.
-
-**Interruption**
- 
-Interruption during the decompression, such as pressing control-C or killing the
-decompression process may result in incomplete decompression of the archive.
-
-**Default behaviors of extraction**
-
-Not knowing the default extraction behaviors can cause unexpected decompression results.
-For example, when extracting the same archive twice, it overwrites files without asking.
+### [Description for decompression pitfalls on zipfile doc](https://docs.python.org/3.8/library/zipfile.html)
 
 ### What is zip bomb?
 It often appeared as a relatively small size zip file. And the unzipped file will be much larger than the zipped one.

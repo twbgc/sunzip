@@ -33,6 +33,11 @@ def main():
         help="the max amount bytes of disk space to use for decompression",
         type=int,
     )
+    parser.add_argument(
+        "--verbose",
+        help="output all messages this tool can output",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     zip_archive = sunzip.sunzip(args.zip_file)
@@ -47,5 +52,7 @@ def main():
         zip_archive.filesize  = args.max_disk_space_bytes
     if args.output_dir:
         zip_archive.output_dir = args.output_dir
+    if args.verbose:
+        zip_archive.debug = sunzip.sunzip.LOG_TRACE
 
     zip_archive.extract()

@@ -16,16 +16,15 @@ MAX_FILESIZE_USAGE = 134217728
 MAX_THRESHOLD = 100
 
 
-class sunzip():
-
+class Sunzip():
     # details finer than debug
-    LOG_TRACE=3
+    LOG_TRACE = 3
     # messages useful for debugging
-    LOG_DEBUG=2
+    LOG_DEBUG = 2
     # messages related to the progress of the tool
-    LOG_INFO=1
+    LOG_INFO = 1
     # no messages
-    LOG_NONE=0
+    LOG_NONE = 0
 
     def __init__(self, path, method=None):
         """
@@ -49,7 +48,7 @@ class sunzip():
         # Check if it's a real zip file.
         # Return True when it is a real zip file
 
-        if (zipfile.is_zipfile(self.path)):
+        if zipfile.is_zipfile(self.path):
             return True
         else:
             raise ZipFilePitfall("File does not match to zip format.")
@@ -58,7 +57,7 @@ class sunzip():
         # Check if it's a nested zip file. (i.e. 42.zip)
         # Return True when there is no nested zip file.
         for f in self.zip_file.namelist():
-            if(os.path.splitext(f)[1] == ".zip"):
+            if os.path.splitext(f)[1] == ".zip":
                 raise ZipFilePitfall("Found a nested compressed file.")
             else:
                 return True
@@ -144,46 +143,30 @@ class sunzip():
 
         # Check if the file format is expected for context.
 
-        try:
-            if(self.check_is_zipfile()):
-                status = True
-            else:
-                raise ZipFilePitfall("File type is not zip format.")
-        except Exception as e:
-            print(e)
-            sys.exit(0)
+        if self.check_is_zipfile():
+            status = True
+        else:
+            raise ZipFilePitfall("File type is not zip format.")
 
         # Check if it's a nested zip file.
-        try:
-            if(self.check_is_nested()):
-                status = True
-            else:
-                raise ZipFilePitfall("Zip file contains nested zip file.")
-        except Exception as e:
-            print(e)
-            sys.exit(0)
+        if self.check_is_nested():
+            status = True
+        else:
+            raise ZipFilePitfall("Zip file contains nested zip file.")
 
         # Check if the compression ratio is greater than threshold.
-        try:
-            if(self.get_compression_ratio() <= self.max_threshold):
-                status = True
-            else:
-                raise ZipFilePitfall(
-                    "Compression ratio is greater than threshold.")
-        except Exception as e:
-            print(e)
-            sys.exit(0)
+        if self.get_compression_ratio() <= self.max_threshold:
+            status = True
+        else:
+            raise ZipFilePitfall(
+                "Compression ratio is greater than threshold.")
 
         # Check if the upload file size exceeds the maximum limit.
-        try:
-            if(self.get_zip_file_size() <= self.max_filesize_usage):
-                status = True
-            else:
-                raise ZipFilePitfall(
-                    "File size exceeds the maximum limit.")
-        except Exception as e:
-            print(e)
-            sys.exit(0)
+        if self.get_zip_file_size() <= self.max_filesize_usage:
+            status = True
+        else:
+            raise ZipFilePitfall(
+                "File size exceeds the maximum limit.")
 
         # Defense Layer 2 - Limit the number of resources available to a
         # process and its child process.
@@ -191,10 +174,10 @@ class sunzip():
         self._limit_source()
 
         # Defense Layer 3 - Filetype-specific mitigations.
-        if (status is True):
-            self.log_debug(sunzip.LOG_INFO, "All rules have checked completely. Start to unzipping.")
+        if status is True:
+            self.log_debug(Sunzip.LOG_INFO, "All rules have checked completely. Start to unzipping.")
             self.zip_file.extractall(path=self.output_dir)
-            self.log_debug(sunzip.LOG_INFO, "Extraction complete.")
+            self.log_debug(Sunzip.LOG_INFO, "Extraction complete.")
 
 
 class ZipFilePitfall(Exception):

@@ -104,7 +104,7 @@ You can find the arguments defined at the top of [cli.py](./sunzip/cli.py)
 ```python=
 import sunzip
 
-f = sunzip.sunzip("archive.zip")
+f = sunzip.Sunzip("archive.zip")
 ```
 
 
@@ -134,7 +134,7 @@ If there is no setting, the default value will be used.
 ```python=
 import sunzip
 
-f = sunzip.sunzip("archive.zip")
+f = sunzip.Sunzip("archive.zip")
 
 f.extract()
 ```

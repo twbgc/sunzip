@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="sunzip",
-    version="0.0.1",
+    version="0.0.2",
     keywords=("secure unzip","zipbomb"),
     description="Provide secure unzip against zip bomb.",
     long_description=long_description,

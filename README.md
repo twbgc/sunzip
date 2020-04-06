@@ -98,8 +98,8 @@ $ pip3 install -e <directory to project root>
 ```bash
 # for command line usage see the help
 $ sunzip-cli -h
-# currently missing a lot of options will be added soon!
 ```
+You can find the arguments defined at the top of [cli.py](./sunzip/cli.py)
 
 ```python=
 import sunzip

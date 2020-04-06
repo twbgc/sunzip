@@ -5,6 +5,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("zip_file", help="the zip archive to unzip safely")
     parser.add_argument(
+        "-d",
+        "--output_dir",
+        help="the directory extract to.",
+    )
+    parser.add_argument(
         "-mc",
         "--max-compression-ratio",
         help="the max compression ratio to trust.",
@@ -40,5 +45,7 @@ def main():
         zip_archive.memory = args.max_memory_bytes
     if args.max_disk_space_bytes:
         zip_archive.filesize  = args.max_disk_space_bytes
+    if args.output_dir:
+        zip_archive.output_dir = args.output_dir
 
     zip_archive.extract()

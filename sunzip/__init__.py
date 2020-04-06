@@ -33,6 +33,7 @@ class sunzip():
         self.max_cpu_usage = MAX_CPU_USAGE
         self.max_mem_usage = MAX_MEMORY_USAGE
         self.max_filesize_usage = MAX_FILESIZE_USAGE
+        self.output_dir = None
 
     def check_is_zipfile(self):
         # Check if it's a real zip file.
@@ -176,7 +177,7 @@ class sunzip():
         # Defense Layer 3 - Filetype-specific mitigations.
         if (status is True):
             print("All rules have checked completely. Start to unzipping.")
-            self.zip_file.extractall()
+            self.zip_file.extractall(path=self.output_dir)
 
 
 class ZipFilePitfall(Exception):

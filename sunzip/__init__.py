@@ -18,6 +18,15 @@ MAX_THRESHOLD = 100
 
 class sunzip():
 
+    # details finer than debug
+    LOG_TRACE=3
+    # messages useful for debugging
+    LOG_DEBUG=2
+    # messages related to the progress of the tool
+    LOG_INFO=1
+    # no messages
+    LOG_NONE=0
+
     def __init__(self, path, method=None):
         """
         path: The path parameter is the absolute position of the file where the
@@ -26,6 +35,7 @@ class sunzip():
         method: The method parameter is the algorithm that determines the
         compression, default is Deflate.
         """
+        self.debug = 0
         self.path = path
         self.method = method
         self.zip_file = zipfile.ZipFile(path, "r")
@@ -33,6 +43,7 @@ class sunzip():
         self.max_cpu_usage = MAX_CPU_USAGE
         self.max_mem_usage = MAX_MEMORY_USAGE
         self.max_filesize_usage = MAX_FILESIZE_USAGE
+        self.output_dir = None
 
     def check_is_zipfile(self):
         # Check if it's a real zip file.
@@ -116,6 +127,12 @@ class sunzip():
         resource.setrlimit(resource.RLIMIT_FSIZE,
                            (self.max_filesize_usage, self.max_filesize_usage))
 
+    def log_debug(self, level, message):
+        if self.debug <= 0:
+            return
+        if self.debug >= level:
+            print(message)
+
     def extract(self):
         # Unzip the zip file in a secure way. It would unzip the zip file only
         # if the status is True after all checks have passed.
@@ -175,26 +192,11 @@ class sunzip():
 
         # Defense Layer 3 - Filetype-specific mitigations.
         if (status is True):
-            print("All rules have checked completely. Start to unzipping.")
-            self.zip_file.extractall()
+            self.log_debug(sunzip.LOG_INFO, "All rules have checked completely. Start to unzipping.")
+            self.zip_file.extractall(path=self.output_dir)
+            self.log_debug(sunzip.LOG_INFO, "Extraction complete.")
 
 
 class ZipFilePitfall(Exception):
     # Raise error usage.
     pass
-
-
-if __name__ == "__main__":
-    """
-    CLI Usage: python main.py archive.zip.
-    """
-
-    if(len(sys.argv) == 2):
-
-        unzipfile = sys.argv[1]
-
-        zi = sunzip(unzipfile)
-
-        zi.extract()
-    else:
-        print("CLI Usage: python main.py archive.zip.")

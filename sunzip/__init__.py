@@ -182,19 +182,3 @@ class sunzip():
 class ZipFilePitfall(Exception):
     # Raise error usage.
     pass
-
-
-if __name__ == "__main__":
-    """
-    CLI Usage: python main.py archive.zip.
-    """
-
-    if(len(sys.argv) == 2):
-
-        unzipfile = sys.argv[1]
-
-        zi = sunzip(unzipfile)
-
-        zi.extract()
-    else:
-        print("CLI Usage: python main.py archive.zip.")

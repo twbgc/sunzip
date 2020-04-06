@@ -86,8 +86,20 @@ This would probably cause a problem when your disk volume or memory is relativel
 $ pip3 install sunzip
 ```
 
+```bash
+# for development use "development mode"
+# https://packaging.python.org/tutorials/installing-packages/
+$ pip3 install -e <directory to project root>
+```
+
 
 ## Usage
+
+```bash
+# for command line usage see the help
+$ sunzip-cli -h
+# currently missing a lot of options will be added soon!
+```
 
 ```python=
 import sunzip

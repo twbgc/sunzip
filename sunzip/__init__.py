@@ -16,7 +16,7 @@ MAX_FILESIZE_USAGE = 134217728
 MAX_THRESHOLD = 100
 
 
-class Sunzip():
+class Sunzip:
     # details finer than debug
     LOG_TRACE = 3
     # messages useful for debugging
@@ -117,14 +117,15 @@ class Sunzip():
         # Limit available resources.
 
         # CPU
-        resource.setrlimit(resource.RLIMIT_CPU,
-                           (self.max_cpu_usage, self.max_cpu_usage))
+        resource.setrlimit(
+            resource.RLIMIT_CPU, (self.max_cpu_usage, self.max_cpu_usage)
+        )
         # MEMORY
-        resource.setrlimit(resource.RLIMIT_AS,
-                           (self.max_mem_usage, self.max_mem_usage))
+        resource.setrlimit(resource.RLIMIT_AS, (self.max_mem_usage, self.max_mem_usage))
         # FILESIZE
-        resource.setrlimit(resource.RLIMIT_FSIZE,
-                           (self.max_filesize_usage, self.max_filesize_usage))
+        resource.setrlimit(
+            resource.RLIMIT_FSIZE, (self.max_filesize_usage, self.max_filesize_usage)
+        )
 
     def log_debug(self, level, message):
         if self.debug <= 0:
@@ -137,7 +138,6 @@ class Sunzip():
         # if the status is True after all checks have passed.
 
         status = False
-        threshold = self.threshold
 
         # Defense Layer 1 - checks perform on the server side.
 
@@ -158,15 +158,13 @@ class Sunzip():
         if self.get_compression_ratio() <= self.max_threshold:
             status = True
         else:
-            raise ZipFilePitfall(
-                "Compression ratio is greater than threshold.")
+            raise ZipFilePitfall("Compression ratio is greater than threshold.")
 
         # Check if the upload file size exceeds the maximum limit.
         if self.get_zip_file_size() <= self.max_filesize_usage:
             status = True
         else:
-            raise ZipFilePitfall(
-                "File size exceeds the maximum limit.")
+            raise ZipFilePitfall("File size exceeds the maximum limit.")
 
         # Defense Layer 2 - Limit the number of resources available to a
         # process and its child process.
@@ -175,7 +173,10 @@ class Sunzip():
 
         # Defense Layer 3 - Filetype-specific mitigations.
         if status is True:
-            self.log_debug(Sunzip.LOG_INFO, "All rules have checked completely. Start to unzipping.")
+            self.log_debug(
+                Sunzip.LOG_INFO,
+                "All rules have checked completely. Start to unzipping.",
+            )
             self.zip_file.extractall(path=self.output_dir)
             self.log_debug(Sunzip.LOG_INFO, "Extraction complete.")
 

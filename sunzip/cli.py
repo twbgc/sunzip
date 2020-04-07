@@ -7,9 +7,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("zip_file", help="the zip archive to unzip safely")
     parser.add_argument(
-        "-d",
-        "--output_dir",
-        help="the directory extract to.",
+        "-d", "--output_dir", help="the directory extract to.",
     )
     parser.add_argument(
         "-mc",

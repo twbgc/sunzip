@@ -28,10 +28,10 @@ This would probably cause a problem when your disk volume or memory is relativel
 
 ```
     1. Check if it's a nested zip file. (i.e. 42.zip)
-    2. Check if the compression ratio (Uncompressed Content/Compressed Content) 
+    2. Check if the compression ratio (Uncompressed Content/Compressed Content)
        is greater than the threshold?
     3. Check if the file format is expected for context.
-    4. Upload file size does not exceed the maximum limit. 
+    4. Upload file size does not exceed the maximum limit.
 ```
 
 * Defense Layer 2 - limit the number of resources available to the process and its children.
@@ -40,12 +40,12 @@ This would probably cause a problem when your disk volume or memory is relativel
     1. Check if CPU time is greater than the threshold.
     2. Check if the extracted part in memory is oversized. (memory usage)
 ```
-  
+
 * Defense Layer 3 - filetype-specific mitigations.
 
   Filetype: Archives
 ```
-    1. Restrict output file size and number of extracted files 
+    1. Restrict output file size and number of extracted files
        to ensure the total doesn't exceed the maximum limit.
 ```
 
@@ -55,11 +55,11 @@ This would probably cause a problem when your disk volume or memory is relativel
   Defense Layer 1:
     Uncompressed content size:  200 MB (vt)
     Compression ratio:          https://youtu.be/IXkX2ojrKZQ?t=553
-  
+
   Defense Layer 2:
     CPU time:                   2 seconds(vt)
     Memoery oversized:
-    
+
   Defense Layer 3:
     Output file size:
     Number of extracted files:
@@ -70,10 +70,10 @@ This would probably cause a problem when your disk volume or memory is relativel
   ```
   Bomb Codes
   https://bomb.codes/
-  
+
   Mitigation Summary
   https://youtu.be/IXkX2ojrKZQ?t=1296
-  
+
   Defense layers
   https://bomb.codes/mitigations
   ```

@@ -12,7 +12,6 @@ setup(
     description="Provide secure unzip against zip bomb.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    license="MIT Licence",
     url="https://github.com/twbgc/sunzip",
     author="JunWeiSong,KunYuChen",
     author_email="sungboss2004@gmail.com",

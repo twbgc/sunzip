@@ -58,8 +58,8 @@ class Sunzip:
         for f in self.zip_file.namelist():
             if os.path.splitext(f)[1] == ".zip":
                 raise ZipFilePitfall("Found a nested compressed file.")
-            else:
-                return True
+
+        return True
 
     def get_zip_file_size(self):
         # Return undecompressd zip file size

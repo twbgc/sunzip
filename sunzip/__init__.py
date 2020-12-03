@@ -117,13 +117,15 @@ class Sunzip:
 
         # CPU
         resource.setrlimit(
-            resource.RLIMIT_CPU, (self.max_cpu_usage, self.max_cpu_usage),
+            resource.RLIMIT_CPU,
+            (self.max_cpu_usage, self.max_cpu_usage),
         )
         # MEMORY
         resource.setrlimit(resource.RLIMIT_AS, (self.max_mem_usage, self.max_mem_usage))
         # FILESIZE
         resource.setrlimit(
-            resource.RLIMIT_FSIZE, (self.max_filesize_usage, self.max_filesize_usage),
+            resource.RLIMIT_FSIZE,
+            (self.max_filesize_usage, self.max_filesize_usage),
         )
 
     def log_debug(self, level, message):

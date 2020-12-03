@@ -16,6 +16,8 @@
 
 According to [Cara Marie](https://youtu.be/IXkX2ojrKZQ?t=331), an archive bomb a.k.a. A zip bomb is often employed to disable antivirus software, in order to create an opening for more traditional viruses. In addition, various kinds of pitfalls may occur during decompression.
 
+[![PyCon Korea-Click Click Boom! Bombs Over Our Minds](https://i.imgur.com/fdDBLUZ.png)](https://www.youtube.com/watch?v=-S4JVQt6GX4&ab_channel=PyConKorea)
+
 ### [Description for decompression pitfalls on zipfile doc](https://docs.python.org/3.8/library/zipfile.html)
 
 ### What is zip bomb?

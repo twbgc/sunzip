@@ -7,7 +7,7 @@ with open("README.md") as fh:
 
 setup(
     name="sunzip",
-    version="0.0.3",
+    version="0.0.4",
     keywords=("secure unzip", "zipbomb"),
     description="Provide secure unzip against zip bomb.",
     long_description=long_description,
